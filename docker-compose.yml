@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  # this will start the database
+  # mongo database
+  db:
+    image: mongo:4.1
+    restart: always
+
+  # this will start my web server
+  app:
+    build:
+      context: .
+    restart: always
+    volumes:
+      - ./dist:/root/dist
+      - ./server:/root/server
+    ports:
+      - 3002:3002
